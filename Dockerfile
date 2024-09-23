@@ -1,5 +1,5 @@
 FROM ghcr.io/otischung/pros_ai_image:1.3.6
-ENV ROS2_WS /workspaces
+ENV ROS2_WS=/workspaces
 ENV ROS_DOMAIN_ID=1
 ENV ROS_DISTRO=humble
 ARG THREADS=4
@@ -17,7 +17,6 @@ RUN mkdir -p ${ROS2_WS}/src && \
     mv /tmp/src/pros_car/src/pros_car_py ${ROS2_WS}/src/pros_car_py && \
     mv /tmp/src/ascamera ${ROS2_WS}/src/ascamera && \
     mv /tmp/src/yolov8/yolov8_msgs ${ROS2_WS}/src/yolov8_msgs && \
-
 # Copy included files
     mv /tmp/include/subscribers.py /opt/ros/humble/local/lib/python3.10/dist-packages/rosbridge_library/internal/subscribers.py && \
     mv /tmp/include/scripts ${ROS2_WS}/scripts
@@ -37,7 +36,6 @@ RUN apt update && \
 # Build
 RUN . /opt/ros/humble/setup.sh && \
     colcon build --symlink-install --parallel-workers ${THREADS} --mixin release && \
-
 ##### Post-Settings #####
 # Clear tmp and cache
     rm -rf /tmp/* && \
