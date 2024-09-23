@@ -97,6 +97,6 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           # TODO: Improve pipeline with https://docs.docker.com/build/ci/github-actions/multi-platform/
-          platforms: linux/arm64  # ,linux/arm/v7
+          platforms: linux/arm64,linux/amd64  # ,linux/arm/v7
         # 2. Use command lines
         # run: docker buildx build --platform linux/amd64,linux/arm64 -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG }} -f ./Dockerfile --push .
