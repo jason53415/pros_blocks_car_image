@@ -43,3 +43,4 @@ RUN . /opt/ros/humble/setup.sh && \
     rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["/ros_entrypoint.bash"]
+CMD ["bash", "-l"]
