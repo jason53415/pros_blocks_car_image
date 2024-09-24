@@ -299,14 +299,16 @@ class SubscriberManager:
 
         """
         with self._lock:
-            if topic not in self._subscribers:
-                return
-
-            self._subscribers[topic].unsubscribe(client_id)
-
-            if not self._subscribers[topic].has_subscribers():
-                self._subscribers[topic].unregister()
-                del self._subscribers[topic]
-
+            if topic in self._subscribers:
+                self._subscribers[topic].unsubscribe(client_id)
+                if not self._subscribers[topic].has_subscribers():
+                    self._subscribers[topic].unregister()
+                    del self._subscribers[topic]
+            
+            if topic in self._raw_subscribers:
+                self._raw_subscribers[topic].unsubscribe(client_id)
+                if not self._raw_subscribers[topic].has_subscribers():
+                    self._raw_subscribers[topic].unregister()
+                    del self._raw_subscribers[topic]
 
 manager = SubscriberManager()
