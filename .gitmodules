@@ -1,0 +1,3 @@
+[submodule "src/pros_car"]
+	path = src/pros_car
+	url = https://github.com/screamlab/pros_car.git
